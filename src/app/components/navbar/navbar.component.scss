@@ -1,0 +1,31 @@
+.logo{
+  font-weight: 900;
+  font-size: x-large;
+  background: -webkit-linear-gradient(43deg, #1c92d2 0%, #f2fcfe 45%, #1c92d2 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300%;
+  animation: animated_gradient_text 12s ease-in-out infinite;
+  -moz-animation: animaanimated_gradient_textted_text 12s ease-in-out infinite;
+  -webkit-animation: animated_gradient_text 12s ease-in-out infinite;
+}
+
+@keyframes animated_gradient_text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.nav-links{
+  text-transform: capitalize;
+}
+.nav-link{
+  cursor: pointer;
+  &:hover{
+    color: #1c92d2;
+  }
+  &.active{
+    color:#1c92d2;
+    font-weight: bold;
+  }
+}
