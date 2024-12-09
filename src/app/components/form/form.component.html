@@ -1,89 +1,103 @@
 <div>
-  <div class="w-full max-w-xs dropdown">
-    <div class="space-y-1">
-      <label class="block text-sm leading-5 font-medium text-gray-700">From</label>
-      <div class="relative">
-        <button
-          (click)="onButtonClick('from')"
-          type="button"
-          aria-haspopup="listbox"
-          [attr.aria-expanded]="openFrom"
-          class="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none sm:text-sm sm:leading-5 text-black"
-        >
-          <span class="block truncate">
-            {{ valueFrom !== null ? names[valueFrom - 1] : 'Select Station' }}
-          </span>
-        </button>
-        <div
-          *ngIf="openFrom"
-          class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10"
-        >
-          <ul
-            role="listbox"
-            tabindex="-1"
-            class="max-h-56 rounded-md py-1 text-base shadow-xs overflow-auto sm:text-sm"
+  <form>
+    <div class="w-full max-w-xs dropdown">
+      <div class="space-y-1">
+        <label class="block text-sm leading-5 font-medium text-gray-300">From</label>
+        <div class="relative">
+          <button
+            (click)="onButtonClick('from')"
+            type="button"
+            aria-haspopup="listbox"
+            [attr.aria-expanded]="openFrom"
+            [class.border-red-500]="errorFrom"
+            class="cursor-pointer relative w-full rounded-md border bg-white pl-3 pr-10 py-2 text-left focus:outline-none sm:text-sm sm:leading-5 text-black"
           >
-            <li
-              *ngFor="let name of names; let i = index"
-              (click)="choose(i + 1, 'from')"
-              (mouseenter)="onHover(i + 1, 'from')"
-              (mouseleave)="onHover(null, 'from')"
-              [class.bg-indigo-600]="selectedFrom === i + 1"
-              [class.text-white]="selectedFrom === i + 1"
-              [class.text-gray-900]="selectedFrom !== i + 1"
-              class="cursor-default select-none relative py-2 pl-4 pr-9"
+            <span class="block truncate">
+              {{ valueFrom !== null ? names[valueFrom - 1] : 'Select Station' }}
+            </span>
+          </button>
+          <div
+            *ngIf="openFrom"
+            class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10"
+          >
+            <ul
+              role="listbox"
+              tabindex="-1"
+              class="max-h-56 rounded-md py-1 text-base shadow-xs overflow-auto sm:text-sm"
             >
-              <span class="block truncate">{{ name }}</span>
-            </li>
-          </ul>
+              <li
+                *ngFor="let name of names; let i = index"
+                (click)="choose(i + 1, 'from')"
+                (mouseenter)="onHover(i + 1, 'from')"
+                (mouseleave)="onHover(null, 'from')"
+                [class.bg-indigo-600]="selectedFrom === i + 1"
+                [class.text-white]="selectedFrom === i + 1"
+                [class.text-gray-900]="selectedFrom !== i + 1"
+                class="cursor-pointer select-none relative py-2 pl-4 pr-9"
+              >
+                <span class="block truncate">{{ name }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
+        <p *ngIf="errorFrom" class="text-red-500 text-xs mt-1">{{ errorFrom }}</p>
       </div>
     </div>
-  </div>
 
-  <div class="w-full max-w-xs mt-2 dropdown">
-    <div class="space-y-1">
-      <label class="block text-sm leading-5 font-medium text-gray-700">To</label>
-      <div class="relative">
-        <button
-          (click)="onButtonClick('to')"
-          type="button"
-          aria-haspopup="listbox"
-          [attr.aria-expanded]="openTo"
-          class="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none sm:text-sm sm:leading-5 text-black"
-        >
-          <span class="block truncate">
-            {{ valueTo !== null ? names[valueTo - 1] : 'Select Station' }}
-          </span>
-        </button>
-        <div
-          *ngIf="openTo"
-          class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10"
-        >
-          <ul
-            role="listbox"
-            tabindex="-1"
-            class="max-h-56 rounded-md py-1 text-base shadow-xs overflow-auto sm:text-sm"
+    <div class="w-full max-w-xs mt-2 dropdown">
+      <div class="space-y-1">
+        <label class="block text-sm leading-5 font-medium text-gray-300">To</label>
+        <div class="relative">
+          <button
+            (click)="onButtonClick('to')"
+            type="button"
+            aria-haspopup="listbox"
+            [attr.aria-expanded]="openTo"
+            [class.border-red-500]="errorTo"
+            class="cursor-pointer relative w-full rounded-md border bg-white pl-3 pr-10 py-2 text-left focus:outline-none sm:text-sm sm:leading-5 text-black"
           >
-            <li
-              *ngFor="let name of names; let i = index"
-              (click)="choose(i + 1, 'to')"
-              (mouseenter)="onHover(i + 1, 'to')"
-              (mouseleave)="onHover(null, 'to')"
-              [class.bg-indigo-600]="selectedTo === i + 1"
-              [class.text-white]="selectedTo === i + 1"
-              [class.text-gray-900]="selectedTo !== i + 1"
-              [class.text-gray-400]="valueFrom === i + 1"
-              [class.cursor-not-allowed]="valueFrom === i + 1"
-              [attr.aria-disabled]="valueFrom === i + 1"
-              [style.pointer-events]="valueFrom === i + 1 ? 'none' : 'auto'"
-              class="cursor-default select-none relative py-2 pl-4 pr-9"
+            <span class="block truncate">
+              {{ valueTo !== null ? names[valueTo - 1] : 'Select Station' }}
+            </span>
+          </button>
+          <div
+            *ngIf="openTo"
+            class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10"
+          >
+            <ul
+              role="listbox"
+              tabindex="-1"
+              class="max-h-56 rounded-md py-1 text-base shadow-xs overflow-auto sm:text-sm"
             >
-              <span class="block truncate">{{ name }}</span>
-            </li>
-          </ul>
+              <li
+                *ngFor="let name of names; let i = index"
+                (click)="choose(i + 1, 'to')"
+                (mouseenter)="onHover(i + 1, 'to')"
+                (mouseleave)="onHover(null, 'to')"
+                [class.bg-indigo-600]="selectedTo === i + 1"
+                [class.text-white]="selectedTo === i + 1"
+                [class.text-gray-900]="selectedTo !== i + 1"
+                [class.text-gray-400]="valueFrom === i + 1"
+                [class.cursor-not-allowed]="valueFrom === i + 1"
+                [attr.aria-disabled]="valueFrom === i + 1"
+                [style.pointer-events]="valueFrom === i + 1 ? 'none' : 'auto'"
+                class="cursor-pointer select-none relative py-2 pl-4 pr-9"
+              >
+                <span class="block truncate">{{ name }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
+        <p *ngIf="errorTo" class="text-red-500 text-xs mt-1">{{ errorTo }}</p>
       </div>
     </div>
-  </div>
+
+    <button
+      (click)="onSubmit($event)"
+      type="submit"
+      class="rounded-lg bg-purple-500 p-2 my-2 w-40 cursor-pointer"
+    >
+      Show routes & fares
+    </button>
+  </form>
 </div>
